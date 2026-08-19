@@ -53,6 +53,44 @@ Data integrity check: 5,000 rows before, 5,000 after -- unchanged.
 
 ---
 
+## Running it in an IDE
+
+Two things trip people up in both VS Code and PyCharm, and they are the
+same two:
+
+1. **It must run as a module, not a script.** Clicking "run this file" on
+   `nl2sql/cli.py` fails with
+   `ImportError: attempted relative import with no known parent package`,
+   because the package uses relative imports. Use `python -m nl2sql.cli`.
+2. **The working directory must be the repo root.** `data/loans.db` is a
+   relative path, and the package will not be found from elsewhere.
+
+**VS Code** — `.vscode/launch.json` is committed with configs for demo
+mode, `--show-schema`, the blocked-`DELETE` case and live mode, each
+already setting `"module"` and `"cwd"` correctly. Pick one from the Run
+and Debug panel. Tests are pre-wired to pytest in `.vscode/settings.json`.
+For browsing the database file, the *SQLite Viewer* extension opens
+`data/loans.db` directly.
+
+**PyCharm** — `Run` → `Edit Configurations` → `+` → Python, then switch
+the target dropdown from **Script path** to **Module name** and enter
+`nl2sql.cli`, with the repo root as the working directory. Set pytest as
+the default runner under `Settings` → `Tools` → `Python Integrated Tools`.
+The Database tool window (`View` → `Tool Windows` → `Database`) reads
+`data/loans.db`, but note it is **Professional only** — on Community, use
+[DB Browser for SQLite](https://sqlitebrowser.org/) or just
+`--show-schema`, which shows more than a table browser does anyway.
+`.idea/` is gitignored, since PyCharm project files are machine-specific.
+
+**Where to put breakpoints.** `engine.answer_question()` holds the whole
+pipeline in one function — inspect `raw_sql` as the generator returns it,
+then `validation` immediately after, and the untrusted-string-to-checked-
+result transition is visible in one step. `validator.validate_sql()` is
+the other one worth watching: run the blocked-`DELETE` config and watch
+`passed` accumulate `single_statement` and then stop dead at check 2.
+
+---
+
 ## Why whitelist, not blacklist
 
 This is the load-bearing decision in the project, so it is worth being

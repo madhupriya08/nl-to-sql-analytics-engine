@@ -11,3 +11,9 @@ venv/
 *.sqlite
 *.sqlite3
 data/
+
+# PyCharm project files are machine-specific (interpreter paths, local run
+# configs), so they stay untracked. .vscode/ is tracked on purpose: its
+# launch configs encode the one thing that is easy to get wrong here --
+# running the CLI as a module from the repo root, not as a script.
+.idea/
