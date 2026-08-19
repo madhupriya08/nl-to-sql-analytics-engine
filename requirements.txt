@@ -1,0 +1,6 @@
+# Only the SQL-generation module needs this; every other module (and the
+# entire test suite) runs on the standard library alone.
+anthropic>=0.40.0
+
+# Test runner.
+pytest>=8.0.0

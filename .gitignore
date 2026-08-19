@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Generated artifacts: the database is rebuilt deterministically from
+# synthetic_data.py, so it is an output, not a source of truth.
+*.db
+*.sqlite
+*.sqlite3
+data/
