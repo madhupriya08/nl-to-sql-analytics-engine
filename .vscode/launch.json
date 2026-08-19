@@ -1,0 +1,69 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Demo mode (all 6 questions)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": ["--demo"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Show schema (live introspection)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": ["--show-schema"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Safety case (blocked DELETE)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": ["--demo", "-q", "Delete all subprime loans"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "List demo cases",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": ["--list-demos"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Rebuild database from the seed",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": ["--rebuild", "--demo"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Live mode (needs ANTHROPIC_API_KEY)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "nl2sql.cli",
+      "args": [
+        "-q", "Which entity has the largest subprime exposure?",
+        "--show-schema"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": { "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}" }
+    }
+  ]
+}
