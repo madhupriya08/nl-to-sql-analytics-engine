@@ -1,0 +1,5 @@
+# Optional: only needed when WAREHOUSE=snowflake.
+# Kept out of the base requirements so the project installs and its whole
+# test suite runs without pulling a heavy cloud connector nobody needs
+# for the local DuckDB path.
+snowflake-connector-python>=3.12.0

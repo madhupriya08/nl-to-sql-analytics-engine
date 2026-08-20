@@ -1,6 +1,14 @@
-# Only the SQL-generation module needs this; every other module (and the
-# entire test suite) runs on the standard library alone.
+# --- Warehouse (Phase 1) ---
+duckdb>=1.0.0
+
+# --- LLM + agent (Phase 4) ---
 anthropic>=0.40.0
 
-# Test runner.
+# --- API (Phase 5) ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+
+# --- Tests ---
 pytest>=8.0.0
+httpx>=0.27.0
